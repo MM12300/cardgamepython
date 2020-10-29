@@ -54,23 +54,21 @@ class partie :
             self.plateauDeJeu.getPlateauEnCours().append(self.joueur1.getMainDuJoueur().pop())
             self.plateauDeJeu.getPlateauEnCours().append(self.joueur2.getMainDuJoueur().pop())
 
-            print(self.plateauDeJeu.getPlateauEnCours())
 
-            time.sleep(5)
-            
+            plateau = self.plateauDeJeu.getPlateauEnCours()
+            print(self.plateauDeJeu.getPlateauEnCours())
+            print(plateau[0][0])
+          
             #self.plateauDeJeu.plateauEnCours = [self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop()]
 
-            print(self.plateauDeJeu)
 
             print("Joueur 1 (" + self.plateauDeJeu.plateauEnCours[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu.plateauEnCours[1][2] + ")") 
 
-            time.sleep(5)
 
-
-            if self.plateauDeJeu.plateauEnCours.getPlateauEnCours()[0][0] == self.plateauDeJeu.plateauEnCours.getPlateauEnCours()[1][0] :
+            if plateau[0][0] == plateau[1][0] :
                 print("BATAILLE ! ")
-                self.plateauDeJeu.plateauEnCours.insert(0,self.joueur1.getMainDuJoueur().pop())
-                self.plateauDeJeu.plateauEnCours.insert(0,self.joueur1.getMainDuJoueur().pop())
+                plateau.insert(0,self.joueur1.getMainDuJoueur().pop())
+                plateau.plateauEnCours.insert(0,self.joueur1.getMainDuJoueur().pop())
 
                 print(self.plateauDeJeu.plateauEnCours)
 
@@ -84,11 +82,11 @@ class partie :
                 # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
                 # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
             else :
-                if self.plateauDeJeu.plateauEnCours[0][0] < self.plateauDeJeu.plateauEnCours[1][0] :   
+                if plateau[0][0] < plateau[1][0] :   
                     print("Le joueur 2 gagne cette manche.")
                     print("")
 
-                    for carte in self.plateauDeJeu.plateauEnCours:
+                    for carte in plateau:
                         self.joueur2.getMainDuJoueur().insert(0,carte)
 
 
@@ -96,10 +94,10 @@ class partie :
                     #self.joueur2.getMainDuJoueur().insert(1,self.plateauDeJeu[1])
 
 
-                elif self.plateauDeJeu.plateauEnCours[0][0] > self.plateauDeJeu.plateauEnCours[1][0] :  
+                elif plateau[0][0] > plateau[1][0] :  
 
-                    for carte in self.plateauDeJeu.plateauEnCours:
-                        self.joueur1.getMainDuJoueur().insert(0,carte)
+                    for carte in plateau:
+                        self.joueur1.getMainDuJoueur().insert(0,plateau.pop(carte))
 
                     print("Le joueur 1 gagne cette manche.")
                     print("")
