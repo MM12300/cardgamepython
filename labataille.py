@@ -34,13 +34,14 @@ class partie :
         self.plateauDeJeu=[]
 
     def distribuer(self, jeuDeCarte, joueur1, joueur2):
-        #print(self.jeuDeCarte.paquet)
         self.jeuDeCarte.melangePaquet(self.jeuDeCarte.paquet)
         for n in range(len(self.jeuDeCarte.paquet)):
             if n % 2 == 0 : 
                 self.joueur1.mainDuJoueur.append(self.jeuDeCarte.paquet.pop())
             else:
                 self.joueur2.mainDuJoueur.append(self.jeuDeCarte.paquet.pop())
+
+    
 
 
 
@@ -50,7 +51,6 @@ class partie :
         print("---------------")
         print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
 
-        
         print("---------------")
         self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
         print("Joueur 1 joue : " + self.plateauDeJeu[0][2]+" contre " + "joueur 2 joue : " + self.plateauDeJeu[1][2]) 
@@ -88,8 +88,6 @@ class partie :
                     self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
 
 
-            
-
         #cartes restantes
         print("---------------")
         print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
@@ -107,94 +105,10 @@ class partie :
             self.jouerUneManche(jeuDeCarte, joueur1, joueur2)
 
 
-
-    
-
 class joueur : 
     def __init__(self):
         self.mainDuJoueur=[]
 
-
-
-def oldMain():
-    jeu = jeuDeCarte()
-    #print(jeu.paquet)
-    # print(jeu.paquet)
-    jeu.melangePaquet(jeu.paquet)
-    #print(jeu.paquet)
-
-#CREATION DE LA PARTIE
-    partieEnCours = partie(jeuDeCarte(), joueur(), joueur())
-    #print(partieEnCours.jeuDeCarte.paquet)
-    
-#DISTRIBUTION DES CARTES
-    partieEnCours.distribuer(partieEnCours.jeuDeCarte.paquet, partieEnCours.joueur1, partieEnCours.joueur2)
-    
-#AFFICHAGE CARTE DISTRIBUEE
-    # print("main du joueur 1")
-    # print(len(partieEnCours.joueur1.mainDuJoueur))
-    # print(partieEnCours.joueur1.mainDuJoueur)
-    # print("main du joueur 2")
-    # print(len(partieEnCours.joueur2.mainDuJoueur))
-    # print(partieEnCours.joueur2.mainDuJoueur)
-    # print("paquet")
-    # print(partieEnCours.jeuDeCarte.paquet)
-
-
-    #print(partieEnCours.plateauDeJeu)
-
-
-    print(partieEnCours.joueur1.mainDuJoueur)
-    print("Le joueur 1 a " + str(len(partieEnCours.joueur1.mainDuJoueur)) + "cartes")
-    print("---------------")
-    print(partieEnCours.joueur2.mainDuJoueur)
-    print("Le joueur 2 a " + str(len(partieEnCours.joueur2.mainDuJoueur)) + "cartes")
-
-
-    #description d'une manche 
-    #partieEnCours.plateauDeJeu = (partieEnCours.joueur1.mainDuJoueur.pop(),partieEnCours.joueur2.mainDuJoueur.pop())
-
-
-    #description du cas d'égalité 
-    partieEnCours.plateauDeJeu = ((1,"coeur", "As de Coeur"), ((1,"coeur", "As de Coeur")))
-
-
-
-    print("Joueur 1 joue : " + partieEnCours.plateauDeJeu[0][2]+" contre " + "joueur 2 joue : " + partieEnCours.plateauDeJeu[1][2]) 
-    #règles du jeu
-    if partieEnCours.plateauDeJeu[0][0] < partieEnCours.plateauDeJeu[1][0] :   
-        print("joueur 2 gagnant")
-        partieEnCours.joueur2.mainDuJoueur.append(partieEnCours.plateauDeJeu[0])
-        partieEnCours.joueur2.mainDuJoueur.append(partieEnCours.plateauDeJeu[1])
-    elif partieEnCours.plateauDeJeu[0][0] > partieEnCours.plateauDeJeu[1][0] :   
-        print("joueur 1 gagnant")
-        partieEnCours.joueur1.mainDuJoueur.append(partieEnCours.plateauDeJeu[0])
-        partieEnCours.joueur1.mainDuJoueur.append(partieEnCours.plateauDeJeu[1])
-    else : 
-        print('égalité')
-        totalCarteJoueur1 = len(partieEnCours.joueur1.mainDuJoueur)
-        totalCarteJoueur2= len(partieEnCours.joueur2.mainDuJoueur)
-
-        while totalCarteJoueur1 >= 0 or totalCarteJoueur2 >= 0:
-            if totalCarteJoueur1 == 0:
-                print("joueur 1 a perdu")
-            elif totalCarteJoueur2 == 0:
-                print("joueur 2 a perdu")
-            else : 
-                partieEnCours.plateauDeJeu = (partieEnCours.joueur1.mainDuJoueur.pop(),partieEnCours.joueur2.mainDuJoueur.pop())
-        
-        #######################################################GÉRER LE CAS DES ÉGALITÉS
-    
-    print(partieEnCours.joueur1.mainDuJoueur)
-    print("Le joueur 1 a " + str(len(partieEnCours.joueur1.mainDuJoueur)) + "cartes")
-    print("---------------")
-    print(partieEnCours.joueur2.mainDuJoueur)
-    print("Le joueur 2 a " + str(len(partieEnCours.joueur2.mainDuJoueur)) + "cartes")
-
-    #print(partieEnCours.jeuDeCarte.paquet)
-
-    #joueur1 = joueur()
-    #joueur1.mainDuJoueur
 
 
 def main():
