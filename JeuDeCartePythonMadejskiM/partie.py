@@ -1,7 +1,7 @@
 import time
 import sys
 import joueur as joueur
-
+import os
 
 #Représente une partie carte avec un jeu de carte et 2 joueurs
 #Méthodes : 
@@ -60,7 +60,8 @@ class partie :
 
 
     def jouerUneManche(self, jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches):
-        print("État actuel du jeu :")
+        os.system('cls||clear')
+        print("DÉBUT DE LA MANCHE :")
         print("")
         print("Le joueur 1 a " + str(len(self.joueur1.getMainDuJoueur())) + "cartes")
         print("---------------")
