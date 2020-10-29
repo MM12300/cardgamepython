@@ -5,8 +5,11 @@ import os
 
 
 class plateauDeJeu:
-    def __init__(self, plateauEnCours):
+    def __init__(self):
         self.plateauEnCours=[]
+
+    def getPlateauEnCours(self) :
+        return self.plateauEnCours
 
 #Représente une partie carte avec un jeu de carte et 2 joueurs
 #Méthodes : 
@@ -19,7 +22,7 @@ class partie :
         self.jeuDeCarte = jeuDeCarte
         self.joueur1 = joueur.joueur()
         self.joueur2 = joueur.joueur()
-        self.plateauDeJeu = plateauDeJeu
+        self.plateauDeJeu = plateauDeJeu()
 
     def distribuer(self, jeuDeCarte, joueur1, joueur2):
         self.jeuDeCarte.melangePaquet(self.jeuDeCarte.getPaquet())
@@ -30,7 +33,7 @@ class partie :
                 self.joueur2.getMainDuJoueur().append(self.jeuDeCarte.getPaquet().pop())
 
     #Règle du jeu de la bataille 
-    def regle(self, jeuDeCarte, joueur1, joueur2):
+    def regle(self, jeuDeCarte, joueur1, joueur2, plateauDeJeu):
         totalCarteJoueur1 = len(self.joueur1.getMainDuJoueur())
         totalCarteJoueur2= len(self.joueur2.getMainDuJoueur())
         
@@ -46,14 +49,25 @@ class partie :
             sys.exit('le joueur 1 a gagné ! Bravo!!!')
 
         else : 
-            self.plateauDeJeu.plateauEnCours = [self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop()]
+            
+
+            self.plateauDeJeu.getPlateauEnCours().append(self.joueur1.getMainDuJoueur().pop())
+            self.plateauDeJeu.getPlateauEnCours().append(self.joueur2.getMainDuJoueur().pop())
+
+            print(self.plateauDeJeu.getPlateauEnCours())
+
+            time.sleep(5)
+            
+            #self.plateauDeJeu.plateauEnCours = [self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop()]
 
             print(self.plateauDeJeu)
 
             print("Joueur 1 (" + self.plateauDeJeu.plateauEnCours[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu.plateauEnCours[1][2] + ")") 
 
+            time.sleep(5)
 
-            if self.plateauDeJeu.plateauEnCours[0][0] == self.plateauDeJeu.plateauEnCours[1][0] :
+
+            if self.plateauDeJeu.plateauEnCours.getPlateauEnCours()[0][0] == self.plateauDeJeu.plateauEnCours.getPlateauEnCours()[1][0] :
                 print("BATAILLE ! ")
                 self.plateauDeJeu.plateauEnCours.insert(0,self.joueur1.getMainDuJoueur().pop())
                 self.plateauDeJeu.plateauEnCours.insert(0,self.joueur1.getMainDuJoueur().pop())
@@ -129,7 +143,7 @@ class partie :
 
 
 
-        self.regle(self.jeuDeCarte, self.joueur1, self.joueur2)
+        self.regle(self.jeuDeCarte, self.joueur1, self.joueur2, self.plateauDeJeu)
     
 
         print("---------------")
