@@ -42,33 +42,15 @@ class partie :
                 self.joueur2.mainDuJoueur.append(self.jeuDeCarte.paquet.pop())
 
 
-    def regleDuJeu(self, jeuDeCarte, joueur1, joueur2) : 
-        # while self.plateauDeJeu[0][-1] == self.plateauDeJeu[1][-1] :
-        #     self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
-        #     self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
-
-        if self.plateauDeJeu[0][-1] < self.plateauDeJeu[1][-1] :   
-            print("joueur 2 gagnant")
-            self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
-            self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
-        elif self.plateauDeJeu[0][-1] > self.plateauDeJeu[1][-1] :   
-            print("joueur 1 gagnant")
-            self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
-            self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
-
-            
-
 
     def jouerUneManche(self, jeuDeCarte, joueur1, joueur2):
-        #Distribution des cartes
-        #VERIFICATIONS : Affichage de la main des deux joueurs, du nombre de cartes de chacun
-        #print(self.joueur1.mainDuJoueur)
+        print("MANCHE-------------------")
         print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
         print("---------------")
-        #print(self.joueur2.mainDuJoueur)
         print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
 
-        #Chaque joueur met une carte sur le plateau
+        
+        print("---------------")
         self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
         print("Joueur 1 joue : " + self.plateauDeJeu[0][2]+" contre " + "joueur 2 joue : " + self.plateauDeJeu[1][2]) 
 
@@ -81,16 +63,27 @@ class partie :
         elif totalCarteJoueur2 == 0 : 
             print("le joueur 2 a perdu")
         else : 
-            self.regleDuJeu(self.jeuDeCarte, self.joueur1, self.joueur2)
+                if self.plateauDeJeu[0][-1] < self.plateauDeJeu[1][-1] :   
+                    print("joueur 2 gagnant")
+                    print("---------------")
+                    self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
+                    self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
+                elif self.plateauDeJeu[0][-1] > self.plateauDeJeu[1][-1] :   
+                    print("joueur 1 gagnant")
+                    print("---------------")
+                    self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
+                    self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
+
+
             
 
         #cartes restantes
+        print("---------------")
         print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
         print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
         print("total de cartes = " + str(len(self.joueur2.mainDuJoueur)+len(self.joueur1.mainDuJoueur)))
 
         time.sleep(1)
-
 
     def joueurUnePartie(self, jeuDeCarte, joueur1, joueur2):
         self.distribuer(self.jeuDeCarte.paquet, self.joueur1, self.joueur2)
