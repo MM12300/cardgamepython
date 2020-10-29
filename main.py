@@ -43,14 +43,20 @@ class partie :
 
 
     def regleDuJeu(self, jeuDeCarte, joueur1, joueur2) : 
-        if self.plateauDeJeu[0][0] < self.plateauDeJeu[1][0] :   
+        # while self.plateauDeJeu[0][-1] == self.plateauDeJeu[1][-1] :
+        #     self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
+        #     self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
+
+        if self.plateauDeJeu[0][-1] < self.plateauDeJeu[1][-1] :   
             print("joueur 2 gagnant")
             self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
             self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
-        elif self.plateauDeJeu[0][0] > self.plateauDeJeu[1][0] :   
+        elif self.plateauDeJeu[0][-1] > self.plateauDeJeu[1][-1] :   
             print("joueur 1 gagnant")
             self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
-            self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
+            self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
+
+            
 
 
     def jouerUneManche(self, jeuDeCarte, joueur1, joueur2):
@@ -75,7 +81,7 @@ class partie :
         elif totalCarteJoueur2 == 0 : 
             print("le joueur 2 a perdu")
         else : 
-               self.regleDuJeu(self.jeuDeCarte, self.joueur1, self.joueur2)
+            self.regleDuJeu(self.jeuDeCarte, self.joueur1, self.joueur2)
             
 
         #cartes restantes
@@ -85,7 +91,6 @@ class partie :
 
         time.sleep(1)
 
-        #######################################################GÉRER LE CAS DES ÉGALITÉS
 
     def joueurUnePartie(self, jeuDeCarte, joueur1, joueur2):
         self.distribuer(self.jeuDeCarte.paquet, self.joueur1, self.joueur2)
