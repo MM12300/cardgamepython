@@ -25,7 +25,7 @@ class partie :
                 self.joueur2.getMainDuJoueur().append(self.jeuDeCarte.getPaquet().pop())
 
     #Règle du jeu de la bataille 
-    def regle(self, jeuDeCarte, joueur1, joueur2):
+    def regle(self, jeuDeCarte, joueur1, joueur2, plateauDeJeu):
         totalCarteJoueur1 = len(self.joueur1.getMainDuJoueur())
         totalCarteJoueur2= len(self.joueur2.getMainDuJoueur())
         
@@ -41,21 +41,41 @@ class partie :
             sys.exit('le joueur 1 a gagné ! Bravo!!!')
 
         else : 
-            if self.plateauDeJeu[0][-1] == self.plateauDeJeu[1][-1] :
+            self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
+
+            print("Joueur 1 (" + self.plateauDeJeu[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu[1][2] + ")") 
+
+
+            if self.plateauDeJeu[0][0] == self.plateauDeJeu[1][0] :
                 print("BATAILLE ! ")
+                self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
+                #sys.exit('bataille')
                 # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
                 # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
             else :
                 if self.plateauDeJeu[0][0] < self.plateauDeJeu[1][0] :   
                     print("Le joueur 2 gagne cette manche.")
                     print("")
-                    self.joueur2.getMainDuJoueur().insert(0,self.plateauDeJeu[0])
-                    self.joueur2.getMainDuJoueur().insert(1,self.plateauDeJeu[1])
-                elif self.plateauDeJeu[0][0] > self.plateauDeJeu[1][0] :   
+
+                    for carte in self.plateauDeJeu:
+                        self.joueur2.getMainDuJoueur().insert(0,carte)
+
+
+                    #self.joueur2.getMainDuJoueur().insert(0,self.plateauDeJeu[0])
+                    #self.joueur2.getMainDuJoueur().insert(1,self.plateauDeJeu[1])
+
+
+                elif self.plateauDeJeu[0][0] > self.plateauDeJeu[1][0] :  
+
+                    for carte in self.plateauDeJeu:
+                        self.joueur1.getMainDuJoueur().insert(0,carte)
+
                     print("Le joueur 1 gagne cette manche.")
                     print("")
-                    self.joueur1.getMainDuJoueur().insert(0,self.plateauDeJeu[0])
-                    self.joueur1.getMainDuJoueur().insert(1,self.plateauDeJeu[1])
+
+                    
+                    # self.joueur1.getMainDuJoueur().insert(0,self.plateauDeJeu[0])
+                    # self.joueur1.getMainDuJoueur().insert(1,self.plateauDeJeu[1])
 
 
     def jouerUneManche(self, jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches):
@@ -68,28 +88,32 @@ class partie :
         print("")
 
         print("Attention... on joue !")
-        self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
+        
 
 
 
 
-        print("full plateau")
-        print(self.plateauDeJeu)
-        print("joueur 1")
-        print(self.plateauDeJeu[0])
-        print("joueur 2")
-        print(self.plateauDeJeu[1])
-        print(self.plateauDeJeu[0][-1])
-        print(self.plateauDeJeu[1][-1])
+        # print("full plateau")
+        # print(self.plateauDeJeu)
+        # print("joueur 1")
+        # print(self.plateauDeJeu[0])
+        # print("joueur 2")
+        # print(self.plateauDeJeu[1])
+        # print(self.plateauDeJeu[0][-1])
+        # print(self.plateauDeJeu[1][-1])
 
 
 
 
 
-        print("Joueur 1 (" + self.plateauDeJeu[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu[1][2] + ")") 
+        
 
-        self.regle(self.jeuDeCarte, self.joueur1, self.joueur2)
 
+
+
+
+        self.regle(self.jeuDeCarte, self.joueur1, self.joueur2, self.plateauDeJeu)
+    
 
         print("---------------")
         #permet de vérifier que le nombre de cartes est bien constant et donc qu'il n'y a pas de "bug"
