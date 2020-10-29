@@ -68,29 +68,10 @@ class partie :
                     
                 
                 print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
-                print("BATAILLE ! ")
+
                 plateau.insert(0,self.joueur1.getMainDuJoueur().pop())
                 plateau.insert(0,self.joueur2.getMainDuJoueur().pop())
 
-                print(self.plateauDeJeu.plateauEnCours)
-
-                print("joueur 1")
-                print(self.plateauDeJeu.plateauEnCours[0])
-                print("joueur 2")
-                print(self.plateauDeJeu.plateauEnCours[1])
-                #time.sleep(5)
 
             else :
                 if plateau[0][0] < plateau[1][0] :   
@@ -108,7 +89,7 @@ class partie :
                     print("")
 
     def jouerUneManche(self, jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches):
-        #os.system('cls||clear')
+        os.system('cls||clear')
         print("DÉBUT DE LA MANCHE :")
         print("")
         print("Le joueur 1 a " + str(len(self.joueur1.getMainDuJoueur())) + "cartes")
