@@ -1,5 +1,8 @@
 import random
 
+
+
+
 class jeuDeCarte : 
     def __init__(self):
         self.paquet = []
