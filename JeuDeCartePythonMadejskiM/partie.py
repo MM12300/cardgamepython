@@ -39,9 +39,9 @@ class partie :
         elif totalCarteJoueur2 == 0 : 
             self.joueur1.getMainDuJoueur().append(self.plateauDeJeu[0])
             self.joueur1.getMainDuJoueur().append(self.plateauDeJeu[1])
-            print("Le joueur 1 a " + str(len(self.joueur1.getMainDuJoueur())) + "cartes")
+            print("Le joueur 1 a " + str(len(self.joueur1.getMainDuJoueur())) + " cartes")
             print("---------------")
-            print("Le joueur 2 a " + str(len(self.joueur2.getMainDuJoueur())) + "cartes")
+            print("Le joueur 2 a " + str(len(self.joueur2.getMainDuJoueur())) + " cartes")
             print("")
             sys.exit('le joueur 1 a gagné ! Bravo!!!')
 
