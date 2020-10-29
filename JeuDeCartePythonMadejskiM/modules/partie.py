@@ -53,17 +53,11 @@ class partie :
             self.plateauDeJeu.getPlateauEnCours().append(self.joueur2.getMainDuJoueur().pop())
 
             plateau = self.plateauDeJeu.getPlateauEnCours()
-            print(self.plateauDeJeu.getPlateauEnCours())
-            print(plateau[0][0])
-          
-            #self.plateauDeJeu.plateauEnCours = [self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop()]
-
 
             print("Joueur 1 (" + self.plateauDeJeu.plateauEnCours[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu.plateauEnCours[1][2] + ")") 
 
 
             if plateau[0][0] == plateau[1][0] :
-
                 if totalCarteJoueur1 == 0 :
                     print("")
                     sys.exit('le joueur 2 a gagné ! Bravo!!!')
@@ -72,10 +66,8 @@ class partie :
                     sys.exit('le joueur 1 a gagné ! Bravo!!!')
                     print("BATAILLE ! ")
 
-
-
                 plateau.insert(0,self.joueur1.getMainDuJoueur().pop())
-                plateau.insert(0,self.joueur1.getMainDuJoueur().pop())
+                plateau.insert(0,self.joueur2.getMainDuJoueur().pop())
 
                 print(self.plateauDeJeu.plateauEnCours)
 
@@ -83,43 +75,21 @@ class partie :
                 print(self.plateauDeJeu.plateauEnCours[0])
                 print("joueur 2")
                 print(self.plateauDeJeu.plateauEnCours[1])
-                #time.sleep(10)
-                
-                #sys.exit('bataille')
-                # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
-                # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
+
             else :
                 if plateau[0][0] < plateau[1][0] :   
                     print("Le joueur 2 gagne cette manche.")
                     print("")
-
-
                     for n in range(len(plateau)):
                         self.joueur2.getMainDuJoueur().insert(0, plateau.pop())
 
-                    #for carte in plateau:
-                        #self.joueur2.getMainDuJoueur().insert(0,carte)
-
-
-                    #self.joueur2.getMainDuJoueur().insert(0,self.plateauDeJeu[0])
-                    #self.joueur2.getMainDuJoueur().insert(1,self.plateauDeJeu[1])
-
-
                 elif plateau[0][0] > plateau[1][0] :  
-
-                    # for carte in plateau:
-                    #     self.joueur1.getMainDuJoueur().insert(0,plateau.pop(carte))
 
                     for n in range(len(plateau)):
                         self.joueur1.getMainDuJoueur().insert(0, plateau.pop())
 
                     print("Le joueur 1 gagne cette manche.")
                     print("")
-
-                    
-                    # self.joueur1.getMainDuJoueur().insert(0,self.plateauDeJeu[0])
-                    # self.joueur1.getMainDuJoueur().insert(1,self.plateauDeJeu[1])
-
 
     def jouerUneManche(self, jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches):
         os.system('cls||clear')
@@ -133,31 +103,8 @@ class partie :
         print("Attention... on joue !")
         
 
-
-
-
-        # print("full plateau")
-        # print(self.plateauDeJeu)
-        # print("joueur 1")
-        # print(self.plateauDeJeu[0])
-        # print("joueur 2")
-        # print(self.plateauDeJeu[1])
-        # print(self.plateauDeJeu[0][-1])
-        # print(self.plateauDeJeu[1][-1])
-
-
-
-
-
-        
-
-
-
-
-
         self.regle(self.jeuDeCarte, self.joueur1, self.joueur2, self.plateauDeJeu)
-    
-
+   
         print("---------------")
         #permet de vérifier que le nombre de cartes est bien constant et donc qu'il n'y a pas de "bug"
         print("Total de cartes = " + str(len(self.joueur2.getMainDuJoueur())+len(self.joueur1.getMainDuJoueur())))
