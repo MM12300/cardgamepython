@@ -11,7 +11,7 @@ def jouerUnePartie():
     #Distribution des cartes
     partieEnCours.distribuer(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2)
     #Début de la partie
-    partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2,0.2)
+    partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2,3)
 
 
 if __name__=='__main__':
