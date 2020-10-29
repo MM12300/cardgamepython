@@ -3,6 +3,10 @@ import time
 import sys
 
 
+#Représente un paquet de carte français classique de 52 cartes
+#De base le paquet est rangé par signe, de 2 à As pour chaque signe
+#Méthodes :
+# - melangepaquet : permet de mélanger le paquet avec random
 class jeuDeCarte : 
     def __init__(self):
         self.paquet = []
@@ -26,6 +30,11 @@ class jeuDeCarte :
     def melangePaquet(self,paquet):
             random.shuffle(paquet)
 
+
+#Représente une partie carte avec un jeu de carte et 2 joueurs
+#Méthodes : 
+# - distribuer : permet de distribuer les cartes du paquet une à une entre les 2 joueurs, en commençant toujours par le joueur 2 (il obtient tjrs la première carte du paquet)
+# - regle : règle du jeu, ici la bataille
 class partie : 
     def __init__(self, jeuDeCarte, joueur1, joueur2) : 
         self.jeuDeCarte = jeuDeCarte
@@ -41,21 +50,8 @@ class partie :
             else:
                 self.joueur2.mainDuJoueur.append(self.jeuDeCarte.paquet.pop())
 
-    
 
-
-
-    def jouerUneManche(self, jeuDeCarte, joueur1, joueur2):
-        print("MANCHE-------------------")
-        print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
-        print("---------------")
-        print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
-
-        print("---------------")
-        self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
-        print("Joueur 1 joue : " + self.plateauDeJeu[0][2]+" contre " + "joueur 2 joue : " + self.plateauDeJeu[1][2]) 
-
-        #règles du jeu
+    def regle(self, jeuDeCarte, joueur1, joueur2):
         totalCarteJoueur1 = len(self.joueur1.mainDuJoueur)
         totalCarteJoueur2= len(self.joueur2.mainDuJoueur)
         
@@ -63,11 +59,17 @@ class partie :
             #print("Le joueur 1 a perdu")
             self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
             self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
+            print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
+            print("---------------")
+            print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
             sys.exit('le joueur 2 a gagné ! Bravo')
         elif totalCarteJoueur2 == 0 : 
             #print("le joueur 2 a perdu")
             self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
             self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
+            print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
+            print("---------------")
+            print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
             sys.exit('le joueur 1 a gagné ! Bravo')
 
         else : 
@@ -86,6 +88,19 @@ class partie :
                     print("---------------")
                     self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
                     self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
+
+
+    def jouerUneManche(self, jeuDeCarte, joueur1, joueur2):
+        print("MANCHE-------------------")
+        print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
+        print("---------------")
+        print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
+
+        print("---------------")
+        self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
+        print("Joueur 1 joue : " + self.plateauDeJeu[0][2]+" contre " + "joueur 2 joue : " + self.plateauDeJeu[1][2]) 
+
+        self.regle(self.jeuDeCarte, self.joueur1, self.joueur2)
 
 
         #cartes restantes
@@ -108,7 +123,6 @@ class partie :
 class joueur : 
     def __init__(self):
         self.mainDuJoueur=[]
-
 
 
 def main():
