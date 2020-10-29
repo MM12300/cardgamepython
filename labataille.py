@@ -74,6 +74,7 @@ class partie :
 
         else : 
             if self.plateauDeJeu[0][-1] == self.plateauDeJeu[1][-1] :
+                print("BATAILLE ! ")
                 self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
                 self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
                 

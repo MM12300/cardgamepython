@@ -35,7 +35,7 @@ class partie :
             print("---------------")
             print("Le joueur 2 a " + str(len(self.joueur2.getMainDuJoueur())) + "cartes")
             print("")
-            sys.exit('le joueur 2 a gagné ! Bravo')
+            sys.exit('le joueur 2 a gagné ! Bravo.')
         elif totalCarteJoueur2 == 0 : 
             self.joueur1.getMainDuJoueur().append(self.plateauDeJeu[0])
             self.joueur1.getMainDuJoueur().append(self.plateauDeJeu[1])
@@ -43,21 +43,22 @@ class partie :
             print("---------------")
             print("Le joueur 2 a " + str(len(self.joueur2.getMainDuJoueur())) + "cartes")
             print("")
-            sys.exit('le joueur 1 a gagné ! Bravo')
+            sys.exit('le joueur 1 a gagné ! Bravo.')
 
         else : 
             if self.plateauDeJeu[0][-1] == self.plateauDeJeu[1][-1] :
+                print("BATAILLE ! ")
                 self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
                 self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
                 
             else :
                 if self.plateauDeJeu[0][-1] < self.plateauDeJeu[1][-1] :   
-                    print("Le joueur 2 gagne cette manche")
+                    print("Le joueur 2 gagne cette manche.")
                     print("")
                     self.joueur2.getMainDuJoueur().append(self.plateauDeJeu[0])
                     self.joueur2.getMainDuJoueur().append(self.plateauDeJeu[1])
                 elif self.plateauDeJeu[0][-1] > self.plateauDeJeu[1][-1] :   
-                    print("Le joueur 1 gagne cette manche")
+                    print("Le joueur 1 gagne cette manche.")
                     print("")
                     self.joueur1.getMainDuJoueur().append(self.plateauDeJeu[0])
                     self.joueur1.getMainDuJoueur().append(self.plateauDeJeu[1])
@@ -73,7 +74,7 @@ class partie :
 
         print("Attention... on joue !")
         self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
-        print("Joueur 1 (" + self.plateauDeJeu[0][2]+") contre " + "Joueur 2 (" + self.plateauDeJeu[1][2] + ")") 
+        print("Joueur 1 (" + self.plateauDeJeu[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu[1][2] + ")") 
 
         self.regle(self.jeuDeCarte, self.joueur1, self.joueur2)
 
