@@ -5,7 +5,7 @@ class Compte:
         self.__pathDroits={}
         for path in dictPathDroit:
             self.__pathDroits[path]=dictPathDroit[path]
-    def __setNom(self,nom):
+    def __setNom(self,no):
         self.__nom=nom
     def getNom(self,nom):
         return self.__nom
