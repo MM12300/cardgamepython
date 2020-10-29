@@ -1,6 +1,6 @@
 import time
 import sys
-import joueur as joueur
+import modules.joueur as joueur
 import os
 
 #Représente une partie carte avec un jeu de carte et 2 joueurs

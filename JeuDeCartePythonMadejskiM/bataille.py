@@ -1,6 +1,6 @@
-import partie
-import joueur
-import jeuDeCarte
+import modules.partie as partie
+import modules.joueur as joueur
+import modules.jeuDeCarte as jeuDeCarte
 
   
 
