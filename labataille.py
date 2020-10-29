@@ -11,7 +11,7 @@ class jeuDeCarte :
     def __init__(self):
         self.paquet = []
         self.valeurs = [2,3,4,5,6,7,8,9,10,11,12,13,14]
-        self.signes = [ "Coeur", "Carreau", "Pique", "Trefle" ]
+        self.signes = [ "Coeur", "Carreau", "Pique", "Trèfle" ]
 
         for signe in self.signes:
             for valeur in self.valeurs:
@@ -33,8 +33,10 @@ class jeuDeCarte :
 
 #Représente une partie carte avec un jeu de carte et 2 joueurs
 #Méthodes : 
-# - distribuer : permet de distribuer les cartes du paquet une à une entre les 2 joueurs, en commençant toujours par le joueur 2 (il obtient tjrs la première carte du paquet)
-# - regle : règle du jeu, ici la bataille
+# - distribuer(self, jeuDeCarte, joueur1, joueur2) : permet de distribuer les cartes du paquet une à une entre les 2 joueurs, en commençant toujours par le joueur 2 (il obtient tjrs la première carte du paquet)
+# - regle(self, jeuDeCarte, joueur1, joueur2) : règle du jeu, ici la bataille
+# - jouerUneManche(self, jeuDeCarte, joueur1, joueur2) : représente le déroulement d'une manche
+# - joueurUnePartie(self, jeuDeCarte, joueur1, joueur2) : représente le déroulement de la partie entière
 class partie : 
     def __init__(self, jeuDeCarte, joueur1, joueur2) : 
         self.jeuDeCarte = jeuDeCarte
@@ -50,26 +52,25 @@ class partie :
             else:
                 self.joueur2.mainDuJoueur.append(self.jeuDeCarte.paquet.pop())
 
-
     def regle(self, jeuDeCarte, joueur1, joueur2):
         totalCarteJoueur1 = len(self.joueur1.mainDuJoueur)
         totalCarteJoueur2= len(self.joueur2.mainDuJoueur)
         
         if totalCarteJoueur1 == 0 :
-            #print("Le joueur 1 a perdu")
             self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
             self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
             print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
             print("---------------")
             print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
+            print("")
             sys.exit('le joueur 2 a gagné ! Bravo')
         elif totalCarteJoueur2 == 0 : 
-            #print("le joueur 2 a perdu")
             self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
             self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
             print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
             print("---------------")
             print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
+            print("")
             sys.exit('le joueur 1 a gagné ! Bravo')
 
         else : 
@@ -79,26 +80,28 @@ class partie :
                 
             else :
                 if self.plateauDeJeu[0][-1] < self.plateauDeJeu[1][-1] :   
-                    print("joueur 2 gagnant")
-                    print("---------------")
+                    print("Le joueur 2 gagne cette manche")
+                    print("")
                     self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
                     self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
                 elif self.plateauDeJeu[0][-1] > self.plateauDeJeu[1][-1] :   
-                    print("joueur 1 gagnant")
-                    print("---------------")
+                    print("Le joueur 1 gagne cette manche")
+                    print("")
                     self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
                     self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
 
 
-    def jouerUneManche(self, jeuDeCarte, joueur1, joueur2):
-        print("MANCHE-------------------")
+    def jouerUneManche(self, jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches):
+        print("État actuel du jeu :")
+        print("")
         print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
         print("---------------")
         print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
+        print("")
 
-        print("---------------")
+        print("Attention... on joue !")
         self.plateauDeJeu = (self.joueur1.mainDuJoueur.pop(),self.joueur2.mainDuJoueur.pop())
-        print("Joueur 1 joue : " + self.plateauDeJeu[0][2]+" contre " + "joueur 2 joue : " + self.plateauDeJeu[1][2]) 
+        print("Joueur 1 (" + self.plateauDeJeu[0][2]+") contre " + "Joueur 2 (" + self.plateauDeJeu[1][2] + ")") 
 
         self.regle(self.jeuDeCarte, self.joueur1, self.joueur2)
 
@@ -107,19 +110,22 @@ class partie :
         print("---------------")
         print("Le joueur 1 a " + str(len(self.joueur1.mainDuJoueur)) + "cartes")
         print("Le joueur 2 a " + str(len(self.joueur2.mainDuJoueur)) + "cartes")
-        print("total de cartes = " + str(len(self.joueur2.mainDuJoueur)+len(self.joueur1.mainDuJoueur)))
+        print("Total de cartes = " + str(len(self.joueur2.mainDuJoueur)+len(self.joueur1.mainDuJoueur)))
+        print("FIN DE LA MANCHE")
+        print("")
 
-        #time.sleep(1)
+        time.sleep(tempsAttenteEntreDeuxManches)
 
-    def joueurUnePartie(self, jeuDeCarte, joueur1, joueur2):
+    def joueurUnePartie(self, jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches):
+        print("DÉBUT DE LA PARTIE !")
         self.distribuer(self.jeuDeCarte.paquet, self.joueur1, self.joueur2)
         totalCarteJoueur1 = len(self.joueur1.mainDuJoueur)
         totalCarteJoueur2= len(self.joueur2.mainDuJoueur)
 
         while totalCarteJoueur1 >= 0 or totalCarteJoueur2 >= 0:
-            self.jouerUneManche(jeuDeCarte, joueur1, joueur2)
+            self.jouerUneManche(jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches)
 
-
+#Représente un joueur
 class joueur : 
     def __init__(self):
         self.mainDuJoueur=[]
@@ -128,7 +134,7 @@ class joueur :
 def main():
     partieEnCours = partie(jeuDeCarte(), joueur(), joueur())
     partieEnCours.distribuer(partieEnCours.jeuDeCarte.paquet, partieEnCours.joueur1, partieEnCours.joueur2)
-    partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.paquet, partieEnCours.joueur1, partieEnCours.joueur2)
+    partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.paquet, partieEnCours.joueur1, partieEnCours.joueur2,0)
 
 
 if __name__=='__main__':
