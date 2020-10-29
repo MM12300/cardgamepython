@@ -2,9 +2,6 @@ import modules.partie as partie
 import modules.joueur as joueur
 import modules.jeuDeCarte as jeuDeCarte
 
-  
-
-
 def jouerUnePartie():
     #Création de la partie
     partieEnCours = partie.partie(jeuDeCarte.jeuDeCarte(), joueur.joueur(), joueur.joueur(), partie.plateauDeJeu)

@@ -1,5 +1,16 @@
 Évaluation Python Objet - MADEJSKI Matthieu CDAN 2020-2021
 
+/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+ERRATUM : La version envoyée précédemment (à 13h ce jeudi 29/10) comportait des erreurs.
+Effet le code pouvait donner l'illusion de fonctionner mais en détail ce n'était pas le cas.
+J'ai apporté des modifications pour corriger les règles.
+/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+
+
 Version Python : 3.8.6
 
 La Bataille, version console en langage Python :
@@ -13,6 +24,9 @@ On distribue un jeu de cartes (52, pas de joker) aux joueurs, qui n'en prennent 
 En cas d'égalité de valeurs — cas appelé bataille — les joueurs en ballotage disent « bataille ! », et commencent par placer une première carte face cachée puis une seconde carte face visible pour décider qui fera la levée. En cas de nouvelle égalité, la procédure est répétée. À la fin, le joueur gagnant remporte toutes les cartes, qu'il place sous son tas. La bataille est parfois l'occasion d'acquérir une grosse carte et c'est l'unique manière de gagner un as. Sans bataille et à moins qu'un joueur ne possède tous les as, il serait impossible de terminer une partie de bataille.
 Lorsqu'un joueur a en sa possession toutes les cartes du jeu, la partie se termine et il est déclaré gagnant. 
 
+Attention :
+Une partie de bataille à deux joueurs, si le hasard s'en mêle, peut durer assez longtemps.
+Je vous conseille de laisser le timer à 0 (cf. paragraphe customisation)
 
 Comment exécuter le script : 
 -> Soyez sûr avoir installé les modules utilisés (random, time et sys)

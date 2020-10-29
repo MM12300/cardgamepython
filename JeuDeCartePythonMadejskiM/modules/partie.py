@@ -51,27 +51,20 @@ class partie :
         else : 
             self.plateauDeJeu.getPlateauEnCours().append(self.joueur1.getMainDuJoueur().pop())
             self.plateauDeJeu.getPlateauEnCours().append(self.joueur2.getMainDuJoueur().pop())
-
             plateau = self.plateauDeJeu.getPlateauEnCours()
-
             print("Joueur 1 (" + self.plateauDeJeu.plateauEnCours[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu.plateauEnCours[1][2] + ")") 
 
-
             if plateau[0][0] == plateau[1][0] :
-
                 if totalCarteJoueur1 == 0 :
                     print("")
                     sys.exit('le joueur 2 a gagné ! Bravo!!!')
                 elif totalCarteJoueur2 == 0 : 
                     print("")
                     sys.exit('le joueur 1 a gagné ! Bravo!!!')
-                    
                 
                 print("BATAILLE ! ")
-
                 plateau.insert(0,self.joueur1.getMainDuJoueur().pop())
                 plateau.insert(0,self.joueur2.getMainDuJoueur().pop())
-
 
             else :
                 if plateau[0][0] < plateau[1][0] :   
@@ -98,8 +91,6 @@ class partie :
         print("")
 
         print("Attention... on joue !")
-        
-
         self.regle(self.jeuDeCarte, self.joueur1, self.joueur2, self.plateauDeJeu)
    
         print("---------------")
