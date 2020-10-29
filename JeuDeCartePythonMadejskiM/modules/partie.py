@@ -3,6 +3,11 @@ import sys
 import modules.joueur as joueur
 import os
 
+
+class plateauDeJeu:
+    def __init__(self, plateauEnCours):
+        self.plateauEnCours=[]
+
 #Représente une partie carte avec un jeu de carte et 2 joueurs
 #Méthodes : 
 # - distribuer(self, jeuDeCarte, joueur1, joueur2) : permet de distribuer les cartes du paquet une à une entre les 2 joueurs, en commençant toujours par le joueur 2 (il obtient tjrs la première carte du paquet)
@@ -10,11 +15,11 @@ import os
 # - jouerUneManche(self, jeuDeCarte, joueur1, joueur2) : représente le déroulement d'une manche
 # - joueurUnePartie(self, jeuDeCarte, joueur1, joueur2) : représente le déroulement de la partie entière
 class partie : 
-    def __init__(self, jeuDeCarte, joueur1, joueur2) : 
+    def __init__(self, jeuDeCarte, joueur1, joueur2, plateauDeJeu) : 
         self.jeuDeCarte = jeuDeCarte
         self.joueur1 = joueur.joueur()
         self.joueur2 = joueur.joueur()
-        self.plateauDeJeu=[]
+        self.plateauDeJeu = plateauDeJeu
 
     def distribuer(self, jeuDeCarte, joueur1, joueur2):
         self.jeuDeCarte.melangePaquet(self.jeuDeCarte.getPaquet())
@@ -25,7 +30,7 @@ class partie :
                 self.joueur2.getMainDuJoueur().append(self.jeuDeCarte.getPaquet().pop())
 
     #Règle du jeu de la bataille 
-    def regle(self, jeuDeCarte, joueur1, joueur2, plateauDeJeu):
+    def regle(self, jeuDeCarte, joueur1, joueur2):
         totalCarteJoueur1 = len(self.joueur1.getMainDuJoueur())
         totalCarteJoueur2= len(self.joueur2.getMainDuJoueur())
         
@@ -41,14 +46,26 @@ class partie :
             sys.exit('le joueur 1 a gagné ! Bravo!!!')
 
         else : 
-            self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
+            self.plateauDeJeu = [self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop()]
+
+            print(self.plateauDeJeu)
 
             print("Joueur 1 (" + self.plateauDeJeu[0][2]+") CONTRE " + "Joueur 2 (" + self.plateauDeJeu[1][2] + ")") 
 
 
             if self.plateauDeJeu[0][0] == self.plateauDeJeu[1][0] :
                 print("BATAILLE ! ")
-                self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
+                self.plateauDeJeu.insert(0,self.joueur1.getMainDuJoueur().pop())
+                self.plateauDeJeu.insert(0,self.joueur1.getMainDuJoueur().pop())
+
+                print(self.plateauDeJeu)
+
+                print("joueur 1")
+                print(self.plateauDeJeu[0])
+                print("joueur 2")
+                print(self.plateauDeJeu[1])
+                time.sleep(20)
+                
                 #sys.exit('bataille')
                 # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
                 # self.plateauDeJeu = (self.joueur1.getMainDuJoueur().pop(),self.joueur2.getMainDuJoueur().pop())
@@ -112,7 +129,7 @@ class partie :
 
 
 
-        self.regle(self.jeuDeCarte, self.joueur1, self.joueur2, self.plateauDeJeu)
+        self.regle(self.jeuDeCarte, self.joueur1, self.joueur2)
     
 
         print("---------------")

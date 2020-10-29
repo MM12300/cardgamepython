@@ -7,11 +7,11 @@ import modules.jeuDeCarte as jeuDeCarte
 
 def jouerUnePartie():
     #Création de la partie
-    partieEnCours = partie.partie(jeuDeCarte.jeuDeCarte(), joueur.joueur(), joueur.joueur())
+    partieEnCours = partie.partie(jeuDeCarte.jeuDeCarte(), joueur.joueur(), joueur.joueur(), partie.plateauDeJeu)
     #Distribution des cartes
     partieEnCours.distribuer(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2)
     #Début de la partie
-    partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2,0.5)
+    partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2,0.2)
 
 
 if __name__=='__main__':
