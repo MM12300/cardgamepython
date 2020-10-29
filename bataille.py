@@ -2,12 +2,17 @@ import partie
 import joueur
 import jeuDeCarte
 
+  
 
-def main():
+
+def jouerUnePartie():
+    #Création de la partie
     partieEnCours = partie.partie(jeuDeCarte.jeuDeCarte(), joueur.joueur(), joueur.joueur())
+    #Distribution des cartes
     partieEnCours.distribuer(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2)
+    #Début de la partie
     partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.getPaquet(), partieEnCours.joueur1, partieEnCours.joueur2,0)
 
 
 if __name__=='__main__':
-    main()
+    jouerUnePartie()

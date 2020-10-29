@@ -2,6 +2,7 @@ import random
 
 #Représente un paquet de carte français classique de 52 cartes
 #De base le paquet est rangé par signe, de 2 à As pour chaque signe
+#Le contenu du paquet est privé (accessible via getter)
 #Méthodes :
 # - melangepaquet : permet de mélanger le paquet avec random
 class jeuDeCarte : 

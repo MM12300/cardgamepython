@@ -17,12 +17,12 @@ class partie :
         self.plateauDeJeu=[]
 
     def distribuer(self, jeuDeCarte, joueur1, joueur2):
-        self.jeuDeCarte.melangePaquet(self.jeuDeCarte.paquet)
-        for n in range(len(self.jeuDeCarte.paquet)):
+        self.jeuDeCarte.melangePaquet(self.jeuDeCarte.getPaquet())
+        for n in range(len(self.jeuDeCarte.getPaquet())):
             if n % 2 == 0 : 
-                self.joueur1.getMainDuJoueur().append(self.jeuDeCarte.paquet.pop())
+                self.joueur1.getMainDuJoueur().append(self.jeuDeCarte.getPaquet().pop())
             else:
-                self.joueur2.getMainDuJoueur().append(self.jeuDeCarte.paquet.pop())
+                self.joueur2.getMainDuJoueur().append(self.jeuDeCarte.getPaquet().pop())
 
     def regle(self, jeuDeCarte, joueur1, joueur2):
         totalCarteJoueur1 = len(self.joueur1.getMainDuJoueur())
@@ -43,7 +43,7 @@ class partie :
             print("---------------")
             print("Le joueur 2 a " + str(len(self.joueur2.getMainDuJoueur())) + "cartes")
             print("")
-            sys.exit('le joueur 1 a gagné ! Bravo.')
+            sys.exit('le joueur 1 a gagné ! Bravo!!!')
 
         else : 
             if self.plateauDeJeu[0][-1] == self.plateauDeJeu[1][-1] :
@@ -91,7 +91,7 @@ class partie :
 
     def joueurUnePartie(self, jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches):
         print("DÉBUT DE LA PARTIE !")
-        self.distribuer(self.jeuDeCarte.paquet, self.joueur1, self.joueur2)
+        self.distribuer(self.jeuDeCarte.getPaquet(), self.joueur1, self.joueur2)
         totalCarteJoueur1 = len(self.joueur1.getMainDuJoueur())
         totalCarteJoueur2= len(self.joueur2.getMainDuJoueur())
 
