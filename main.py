@@ -41,6 +41,18 @@ class partie :
             else:
                 self.joueur2.mainDuJoueur.append(self.jeuDeCarte.paquet.pop())
 
+
+    def regleDuJeu(self, jeuDeCarte, joueur1, joueur2) : 
+        if self.plateauDeJeu[0][0] < self.plateauDeJeu[1][0] :   
+            print("joueur 2 gagnant")
+            self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
+            self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
+        elif self.plateauDeJeu[0][0] > self.plateauDeJeu[1][0] :   
+            print("joueur 1 gagnant")
+            self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
+            self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
+
+
     def jouerUneManche(self, jeuDeCarte, joueur1, joueur2):
         #Distribution des cartes
         #VERIFICATIONS : Affichage de la main des deux joueurs, du nombre de cartes de chacun
@@ -55,25 +67,15 @@ class partie :
         print("Joueur 1 joue : " + self.plateauDeJeu[0][2]+" contre " + "joueur 2 joue : " + self.plateauDeJeu[1][2]) 
 
         #règles du jeu
-        totalCarteJoueur1 = len(partieEnCours.joueur1.mainDuJoueur)
-        totalCarteJoueur2= len(partieEnCours.joueur2.mainDuJoueur)
+        totalCarteJoueur1 = len(self.joueur1.mainDuJoueur)
+        totalCarteJoueur2= len(self.joueur2.mainDuJoueur)
         
         if totalCarteJoueur1 == 0 :
             print("Le joueur 1 a perdu")
         elif totalCarteJoueur2 == 0 : 
             print("le joueur 2 a perdu")
         else : 
-            while totalCarteJoueur1 > 0  
-                if self.plateauDeJeu[0][0] < self.plateauDeJeu[1][0] :   
-                    print("joueur 2 gagnant")
-                    self.joueur2.mainDuJoueur.append(self.plateauDeJeu[0])
-                    self.joueur2.mainDuJoueur.append(self.plateauDeJeu[1])
-                elif self.plateauDeJeu[0][0] > self.plateauDeJeu[1][0] :   
-                    print("joueur 1 gagnant")
-                    self.joueur1.mainDuJoueur.append(self.plateauDeJeu[0])
-                    self.joueur1.mainDuJoueur.append(self.plateauDeJeu[1])
-                else : 
-
+               self.regleDuJeu(self.jeuDeCarte, self.joueur1, self.joueur2)
             
 
         #cartes restantes
