@@ -1,33 +1,6 @@
-import random
 import time
 import sys
-
-#Représente un paquet de carte français classique de 52 cartes
-#De base le paquet est rangé par signe, de 2 à As pour chaque signe
-#Méthodes :
-# - melangepaquet : permet de mélanger le paquet avec random
-class jeuDeCarte : 
-    def __init__(self):
-        self.paquet = []
-        self.valeurs = [2,3,4,5,6,7,8,9,10,11,12,13,14]
-        self.signes = [ "Coeur", "Carreau", "Pique", "Trèfle" ]
-
-        for signe in self.signes:
-            for valeur in self.valeurs:
-                if valeur == 11 :
-                    carte = "Valet de " + signe
-                elif valeur == 12 : 
-                    carte = "Reine de " + signe
-                elif valeur == 13 : 
-                    carte = "Roi de " + signe
-                elif valeur == 14 : 
-                    carte = "As de " + signe
-                else : 
-                    carte = str(valeur) + " de " + signe
-                self.paquet.append((valeur, signe, carte))
-
-    def melangePaquet(self,paquet):
-            random.shuffle(paquet)
+import joueur as joueur
 
 
 #Représente une partie carte avec un jeu de carte et 2 joueurs
@@ -39,8 +12,8 @@ class jeuDeCarte :
 class partie : 
     def __init__(self, jeuDeCarte, joueur1, joueur2) : 
         self.jeuDeCarte = jeuDeCarte
-        self.joueur1 = joueur()
-        self.joueur2 = joueur()
+        self.joueur1 = joueur.joueur()
+        self.joueur2 = joueur.joueur()
         self.plateauDeJeu=[]
 
     def distribuer(self, jeuDeCarte, joueur1, joueur2):
@@ -123,22 +96,3 @@ class partie :
 
         while totalCarteJoueur1 >= 0 or totalCarteJoueur2 >= 0:
             self.jouerUneManche(jeuDeCarte, joueur1, joueur2, tempsAttenteEntreDeuxManches)
-
-#Représente un joueur
-##la main du joueur est privé
-class joueur : 
-    def __init__(self):
-        self.__mainDuJoueur=[]
-
-    def getMainDuJoueur(self):
-      return self.__mainDuJoueur
-    
-
-def main():
-    partieEnCours = partie(jeuDeCarte(), joueur(), joueur())
-    partieEnCours.distribuer(partieEnCours.jeuDeCarte.paquet, partieEnCours.joueur1, partieEnCours.joueur2)
-    partieEnCours.joueurUnePartie(partieEnCours.jeuDeCarte.paquet, partieEnCours.joueur1, partieEnCours.joueur2,0)
-
-
-if __name__=='__main__':
-    main()
