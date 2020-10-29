@@ -81,8 +81,8 @@ class partie :
 
         #cartes restantes
         print("---------------")
-        print("Le joueur 1 a " + str(len(self.joueur1.getMainDuJoueur())) + "cartes")
-        print("Le joueur 2 a " + str(len(self.joueur2.getMainDuJoueur())) + "cartes")
+        print("Le joueur 1 a " + str(len(self.joueur1.getMainDuJoueur())) + " cartes")
+        print("Le joueur 2 a " + str(len(self.joueur2.getMainDuJoueur())) + " cartes")
         print("Total de cartes = " + str(len(self.joueur2.getMainDuJoueur())+len(self.joueur1.getMainDuJoueur())))
         print("FIN DE LA MANCHE")
         print("")

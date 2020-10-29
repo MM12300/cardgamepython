@@ -6,7 +6,7 @@ import random
 # - melangepaquet : permet de mélanger le paquet avec random
 class jeuDeCarte : 
     def __init__(self):
-        self.paquet = []
+        self.__paquet = []
         self.valeurs = [2,3,4,5,6,7,8,9,10,11,12,13,14]
         self.signes = [ "Coeur", "Carreau", "Pique", "Trèfle" ]
 
@@ -22,7 +22,10 @@ class jeuDeCarte :
                     carte = "As de " + signe
                 else : 
                     carte = str(valeur) + " de " + signe
-                self.paquet.append((valeur, signe, carte))
+                self.__paquet.append((valeur, signe, carte))
+
+    def getPaquet(self):
+       return self.__paquet
 
     def melangePaquet(self,paquet):
-            random.shuffle(paquet)
+        random.shuffle(paquet)
